@@ -34,58 +34,56 @@ body {
   color: $color;
   font-size: $size;
   font-family: $fontfamily;
+}
+.container { 
+  @include box-sizing();
+  max-width: 980px;
+  margin: 0 auto;
 
-  .container { 
-    @include box-sizing();
-    max-width: 980px;
-    margin: 0 auto;
+  a {
+    @include baselink();
+    @include transition(all .8s ease);
+    position: relative; 
 
-    a {
-      @include baselink();
+    &:hover {
+      color: $linkhover;
+    }
+    &::after {
+      content: "";
+      width: 0;
+      height: 1px;
+      right: 0;
+      bottom: 0;
+      position: absolute;
       @include transition(all .8s ease);
-      position: relative; 
+    }
+    &:hover::after {
+      left: 0;
+      width: 100%;
+      background: $linkhover;
+    }
+  }
 
-      &:hover {
-        color: $linkhover;
-      }
-      &::after {
-        content: "";
+  .header {
+    padding: 5%;
+    @include box-sizing();
+
+    h1 {
+      line-height: 1;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: $size *3;
+      a:hover::after {
         width: 0;
-        height: 1px;
-        right: 0;
-        bottom: 0;
-        position: absolute;
-        @include transition(all .8s ease);
-      }
-      &:hover::after {
-        left: 0;
-        width: 100%;
-        background: $linkhover;
       }
     }
-
-    .header {
-      padding: 5%;
-      @include box-sizing();
-
-      h1 {
-        line-height: 1;
-        letter-spacing: 2px;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: $size *3;
-        a:hover::after {
-          width: 0;
-        }
-      }
-      em { font-style: italic; }
-    }
+    em { font-style: italic; }
   }
 }
+
 @media screen and (max-width: 768px) {
-  body {
-    $size: 16px;
-  }
+    $size: 6px;
 }
 
 a#backtotop {
