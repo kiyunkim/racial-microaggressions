@@ -1,4 +1,4 @@
-@import url("../reset.css");
+@import url("../Templates/css/reset.css");
 /* hide follow, like, etc buttons */
 iframe.tmblr-iframe.tmblr-iframe--unified-controls.tmblr-iframe--loaded.iframe-controls--desktop {
   display: none;
@@ -11,10 +11,10 @@ body {
   text-align: center;
   color: #333;
   font-size: 18px;
-  font-family: "Karla", "franklin gothic medium", helvetica, arial, sans-serif;
+  font-family: "Lato", helvetica, arial, sans-serif;
 }
 
-body .container {
+.container {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -22,9 +22,9 @@ body .container {
   margin: 0 auto;
 }
 
-body .container a {
+.container a {
   text-decoration: none;
-  color: #888;
+  color: #000;
   -webkit-transition: all 0.8s ease;
   -moz-transition: all 0.8s ease;
   -ms-transition: all 0.8s ease;
@@ -33,38 +33,34 @@ body .container a {
   position: relative;
 }
 
-body .container a:hover {
-  color: #bc0000;
-}
-
-body .container a::after {
+.container a::after {
+  z-index: -1;
   content: "";
-  width: 0;
-  height: 1px;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  -webkit-transition: all 0.8s ease;
-  -moz-transition: all 0.8s ease;
-  -ms-transition: all 0.8s ease;
-  -o-transition: all 0.8s ease;
-  transition: all 0.8s ease;
-}
-
-body .container a:hover::after {
-  left: 0;
   width: 100%;
-  background: #bc0000;
+  height: 2px;
+  left: 0;
+  bottom: 2px;
+  position: absolute;
+  background: #ff6d85;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
-body .container .header {
+.container a:hover::after {
+  height: 1em;
+}
+
+.container .header {
   padding: 5%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-body .container .header h1 {
+.container .header h1 {
   line-height: 1;
   letter-spacing: 2px;
   font-weight: bold;
@@ -72,12 +68,31 @@ body .container .header h1 {
   font-size: 54px;
 }
 
-body .container .header h1 a:hover::after {
-  width: 0;
+.container .header h1 a::after {
+  bottom: 5px;
+  height: 0;
 }
 
-body .container .header em {
-  font-style: italic;
+.container .header h1 a:hover::after {
+  height: 1em;
+}
+
+.container .header .nav {
+  margin: 1em auto 0;
+  display: table;
+}
+
+.container .header .nav li {
+  display: table-cell;
+}
+
+.container .header .nav li a {
+  margin: 0 10px;
+  display: block;
+}
+
+.container .content .block {
+  width: 50%;
 }
 
 a#backtotop {
