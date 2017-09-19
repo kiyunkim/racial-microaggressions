@@ -91,8 +91,36 @@ body {
   display: block;
 }
 
-.container .content .block {
-  width: 50%;
+.container .row {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: table;
+  max-width: 100%;
+  padding: .5em;
+}
+
+.container .row .col {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: table-cell;
+  padding: .5em;
+}
+
+.container .row .col a::after {
+  display: none;
+}
+
+.container .row .col a img {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .container .row .col {
+    display: table-row;
+    padding: 1em;
+  }
 }
 
 a#backtotop {

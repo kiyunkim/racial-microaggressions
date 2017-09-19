@@ -92,15 +92,31 @@ body {
     }
   }
 
-  .content {
-    .block {
-      width: 50%;
+  .row {
+    @include box-sizing();
+    display: table;
+    max-width: 100%;
+    padding: .5em;
+    .col {
+      @include box-sizing();
+      display: table-cell;
+      padding: .5em;
+      a {
+        &::after { display: none }
+        img {
+          max-width: 100%;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        display: table-row;
+        padding: 1em;
+      }
     }
   }
 }
 
 @media screen and (max-width: 768px) {
-    $size: 6px;
+  $size: 6px;
 }
 
 a#backtotop {
