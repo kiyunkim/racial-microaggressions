@@ -1,0 +1,56 @@
+@import url("../../Templates/css/reset.css");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+body {
+  font-family: "lato", helvetica, arial, sans-serif;
+  background: #eee;
+  line-height: 1.5;
+}
+
+body .container {
+  background: #fff;
+  max-width: 860px;
+  margin: 1em auto;
+}
+
+body .container input {
+  display: none;
+}
+
+body .container .content {
+  display: none;
+  padding: 5%;
+}
+
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+label:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+input:checked + label {
+  color: #555;
+  background: #ddd;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2 {
+  display: block;
+}
+ 
+
+ /*# sourceMappingURL= style.css.map */
