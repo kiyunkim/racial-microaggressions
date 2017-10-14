@@ -1,6 +1,7 @@
 @import url('../../Templates/css/reset.css');
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
+
 $color: #333;
 $color2: #888;
 $accent: #bc0000;
@@ -70,4 +71,26 @@ input:checked + label {
 #tab1:checked ~ #content1,
 #tab2:checked ~ #content2 {
   display: block;
+}
+
+.row {
+  @include box-sizing();
+  display: table;
+  max-width: 100%;
+  padding: .5em;
+  .col {
+    @include box-sizing();
+    display: table-cell;
+    padding: .5em;
+    a {
+      &::after { display: none }
+      img {
+        max-width: 100%;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      display: table-row;
+      padding: 1em;
+    }
+  }
 }
