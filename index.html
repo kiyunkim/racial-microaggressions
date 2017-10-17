@@ -18,8 +18,8 @@
     <div class="content">
       
       <img alt="" src="images/amber.jpg">
-      <img alt="" src="images/amanda.jpg">
-      <img alt="" src="images/aj.jpg">
+      <img alt="" src="images/amanda.jpg" data-src="images/amanda.jpg">
+      <img alt="" src="images/aj.jpg" data-src="images/aj.jpg">
       <img alt="" src="images/aja.jpg" data-src="images/aja.jpg">
       <img alt="" src="images/alice.jpg" data-src="images/alice.jpg">
       <img alt="" src="images/cesca.jpg">
@@ -51,6 +51,15 @@
   <script src="../scripts/unveil-master/jquery.unveil.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+  $("img").unveil(function() {
+    $(this).load(function() {
+      $(this).css('opacity', 1);
+    })
+  });
+
+
+
+
 	//back to top
 	$(window).scroll(function() {
 		if ($(this).scrollTop() > 200) {
