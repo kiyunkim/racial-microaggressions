@@ -18,7 +18,36 @@ $font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubunt
   -o-transition: $var;
   transition: $var;
 }
+@mixin transform($var) {
+  -webkit-transform: $var;
+  -moz-transform: $var;
+  -ms-transform: $var;
+  -o-transform: $var;
+  transform: $var;
+}
 
+// below from
+// joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/
+@mixin animation($animations) {
+  -webkit-animation: $animations;
+  -moz-animation:    $animations;
+  -o-animation:      $animations;
+  animation:         $animations;
+}
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
 body {
   font-family: $font;
   background: #fafafa;
@@ -32,20 +61,38 @@ body {
 }
 .container {
   display: table;
-  padding: 1em;
   margin: 1em 0;
   width: 100%;
+  @include box-sizing();
   @media all and (max-width: 768px) {
     margin: 0;
   }
 }
-
 .content {
   width: 100%;
+  display: table;
 }
 
-
+@include keyframes(show) {
+  0% {
+		opacity: 0;
+    top: 50px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
 img[data-src] {
   opacity: 0;
-  @include transition(opacity 1s ease);
+  position: relative;
+  @include box-sizing();
+  display: inline-block;
+  margin: 1em;
+  width: calc(50% - 2em);
+}
+img[data-src].show {
+  opacity: 1;
+  top: 0;
+  @include animation(show .8s ease-out);
 }

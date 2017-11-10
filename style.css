@@ -12,9 +12,11 @@ body {
 
 .container {
   display: table;
-  padding: 1em;
   margin: 1em 0;
   width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @media all and (max-width: 768px) {
@@ -25,15 +27,71 @@ body {
 
 .content {
   width: 100%;
+  display: table;
+}
+
+@-webkit-keyframes show {
+  0% {
+    opacity: 0;
+    top: 50px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@-moz-keyframes show {
+  0% {
+    opacity: 0;
+    top: 50px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@-o-keyframes show {
+  0% {
+    opacity: 0;
+    top: 50px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    top: 50px;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
 }
 
 img[data-src] {
   opacity: 0;
-  -webkit-transition: opacity 1s ease;
-  -moz-transition: opacity 1s ease;
-  -ms-transition: opacity 1s ease;
-  -o-transition: opacity 1s ease;
-  transition: opacity 1s ease;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 1em;
+  width: calc(50% - 2em);
+}
+
+img[data-src].show {
+  opacity: 1;
+  top: 0;
+  -webkit-animation: show 0.8s ease-out;
+  -moz-animation: show 0.8s ease-out;
+  -o-animation: show 0.8s ease-out;
+  animation: show 0.8s ease-out;
 }
  
 

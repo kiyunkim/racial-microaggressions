@@ -16,12 +16,10 @@
 <div class="wrapper">
   <div class="container">
   <div class="content">
-    
     <img alt="" src="images/amber.jpg" data-src="images/amber.jpg">
     <img alt="" src="images/amanda.jpg" data-src="images/amanda.jpg">
     <img alt="" src="images/aj.jpg" data-src="images/aj.jpg">
     <img alt="" src="images/aja.jpg" data-src="images/aja.jpg">
-    <img alt="" src="images/alice.jpg" data-src="images/alice.jpg">
     <img alt="" src="images/cesca.jpg" data-src="images/cesca.jpg">
     <img alt="" src="images/darby.jpg" data-src="images/darby.jpg">
     <img alt="" src="images/garrett.jpg" data-src="images/garrett.jpg">
@@ -36,9 +34,12 @@
     <img alt="" src="images/nisarah.jpg" data-src="images/nisarah.jpg">
     <img alt="" src="images/sandra.jpg" data-src="images/sandra.jpg">
     <img alt="" src="images/sri.jpg" data-src="images/sri.jpg">
-    <img alt="" src="images/wallis.jpg" data-src="images/wallis.jpg">
     <img alt="" src="images/winter.jpg" data-src="images/winter.jpg">
-      
+
+    <!--
+    <img alt="" src="images/wallis.jpg" data-src="images/wallis.jpg">
+    <img alt="" src="images/alice.jpg" data-src="images/alice.jpg">
+    -->  
   </div>
 </div>
 </div>
@@ -53,10 +54,14 @@
 $(document).ready(function() {
   $("img").unveil(0, function() {
     $(this).on('load', function() {
-      $(this).css({
-        'opacity' : '1'
-      });
-    })
+      if($(this).is(':nth-child(odd)')) {
+        $(this).addClass('show');
+      } else {
+        $(this).delay(200).queue(function(){
+          $(this).addClass('show').dequeue();
+        });
+      }
+    });
   });
 
 
