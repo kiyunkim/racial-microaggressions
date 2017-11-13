@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Racial Microaggressions by Kiyun Kim</title>
+  <title>Racial Microaggressions</title>
   <meta name="author" content="Kiyun Kim">
   <meta name="description" content="Photo series on racial microaggressions by Kiyun Kim" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,25 +15,30 @@
 <div class="wrapper">
   <div class="container">
   <div class="content">
-    <img alt="" src="images/amber.jpg" data-src="images/amber.jpg">
-    <img alt="" src="images/amanda.jpg" data-src="images/amanda.jpg">
-    <img alt="" src="images/aj.jpg" data-src="images/aj.jpg">
-    <img alt="" src="images/aja.jpg" data-src="images/aja.jpg">
-    <img alt="" src="images/cesca.jpg" data-src="images/cesca.jpg">
-    <img alt="" src="images/darby.jpg" data-src="images/darby.jpg">
-    <img alt="" src="images/garrett.jpg" data-src="images/garrett.jpg">
-    <img alt="" src="images/hydn.jpg" data-src="images/hydn.jpg">
-    <img alt="" src="images/jackie.jpg" data-src="images/jackie.jpg">
-    <img alt="" src="images/jaime.jpg" data-src="images/jaime.jpg">
-    <img alt="" src="images/josh.jpg" data-src="images/josh.jpg">
-    <img alt="" src="images/kristina.jpg" data-src="images/kristina.jpg">
-    <img alt="" src="images/maya.jpg" data-src="images/maya.jpg">
-    <img alt="" src="images/michele.jpg" data-src="images/michele.jpg">
-    <img alt="" src="images/mika.jpg" data-src="images/mika.jpg">
-    <img alt="" src="images/nisarah.jpg" data-src="images/nisarah.jpg">
-    <img alt="" src="images/sandra.jpg" data-src="images/sandra.jpg">
-    <img alt="" src="images/sri.jpg" data-src="images/sri.jpg">
-    <img alt="" src="images/winter.jpg" data-src="images/winter.jpg">
+    <h1>Racial Microaggressions</h1>
+    <h2>Kiyun Kim</h2>
+    <div class="frame">
+      <img alt="" src="images/amber.jpg" data-src="images/amber.jpg">
+      <p>"Why do you sound white?"</p>
+    </div>
+    <div class="frame"><img alt="" src="images/amanda.jpg" data-src="images/amanda.jpg"></div>
+    <div class="frame"><img alt="" src="images/aj.jpg" data-src="images/aj.jpg"></div>
+    <div class="frame"><img alt="" src="images/aja.jpg" data-src="images/aja.jpg"></div>
+    <div class="frame"><img alt="" src="images/cesca.jpg" data-src="images/cesca.jpg"></div>
+    <div class="frame"><img alt="" src="images/darby.jpg" data-src="images/darby.jpg"></div>
+    <div class="frame"><img alt="" src="images/garrett.jpg" data-src="images/garrett.jpg"></div>
+    <div class="frame"><img alt="" src="images/hydn.jpg" data-src="images/hydn.jpg"></div>
+    <div class="frame"><img alt="" src="images/jackie.jpg" data-src="images/jackie.jpg"></div>
+    <div class="frame"><img alt="" src="images/jaime.jpg" data-src="images/jaime.jpg"></div>
+    <div class="frame"><img alt="" src="images/josh.jpg" data-src="images/josh.jpg"></div>
+    <div class="frame"><img alt="" src="images/kristina.jpg" data-src="images/kristina.jpg"></div>
+    <div class="frame"><img alt="" src="images/maya.jpg" data-src="images/maya.jpg"></div>
+    <div class="frame"><img alt="" src="images/michele.jpg" data-src="images/michele.jpg"></div>
+    <div class="frame"><img alt="" src="images/mika.jpg" data-src="images/mika.jpg"></div>
+    <div class="frame"><img alt="" src="images/nisarah.jpg" data-src="images/nisarah.jpg"></div>
+    <div class="frame"><img alt="" src="images/sandra.jpg" data-src="images/sandra.jpg"></div>
+    <div class="frame"><img alt="" src="images/sri.jpg" data-src="images/sri.jpg"></div>
+    <div class="frame"><img alt="" src="images/winter.jpg" data-src="images/winter.jpg"></div>
 
     <!--
     <img alt="" src="images/wallis.jpg" data-src="images/wallis.jpg">
@@ -54,13 +58,7 @@
 $(document).ready(function() {
   $("img").unveil(0, function() {
     $(this).on('load', function() {
-      if($(this).is(':nth-child(odd)')) {
         $(this).addClass('show');
-      } else {
-        $(this).delay(200).queue(function(){
-          $(this).addClass('show').dequeue();
-        });
-      }
     });
   });
 

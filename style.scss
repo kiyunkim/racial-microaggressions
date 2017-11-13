@@ -55,7 +55,7 @@ body {
 }
 
 .wrapper {
-  max-width: 768px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
@@ -70,13 +70,21 @@ body {
 }
 .content {
   width: 100%;
+  padding: 0 1em;
   display: table;
 }
-
+.frame { 
+  @include box-sizing();
+  width: 50%;
+  display: inline-block;
+}
 @include keyframes(show) {
   0% {
 		opacity: 0;
     top: 50px;
+  }
+  50% {
+    opacity: .7;
   }
   100% {
     opacity: 1;
@@ -85,11 +93,11 @@ body {
 }
 img[data-src] {
   opacity: 0;
+  display: block;
   position: relative;
   @include box-sizing();
-  display: inline-block;
-  margin: 1em;
-  width: calc(50% - 2em);
+  width: calc(100% - 2em);
+  margin: 1em auto;
 }
 img[data-src].show {
   opacity: 1;
