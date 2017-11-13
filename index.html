@@ -12,11 +12,19 @@
 
 <body ontouchstart="">
 
+<div class="header">
+  <div class="left-title"><h1><a data-href="photos" href="#">Racial Microaggressions</a></h1>
+  </div><div class="right-links">
+    <ul>
+      <li><a data-href="info" href="#">Info</a></li>
+      <li><a data-href="contact" href="#">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
 <div class="wrapper">
   <div class="container">
-  <div class="content">
-    <h1>Racial Microaggressions</h1>
-    <h2>Kiyun Kim</h2>
+  <div class="content photos show">
     <div class="frame">
       <img alt="" src="images/amber.jpg" data-src="images/amber.jpg">
       <p class="caption">"Why do you sound white?"</p>
@@ -45,6 +53,9 @@
     <img alt="" src="images/alice.jpg" data-src="images/alice.jpg">
     -->  
   </div>
+  <div class="content info hide">
+    <p>testing</p>
+  </div>
 </div>
 </div>
 
@@ -70,6 +81,12 @@ $(document).ready(function() {
         });
       }
     });
+  });
+
+  $('.right-links a').click(function() {
+    var data_href = $(this).attr('data-href');
+    $('.content.show').removeClass('show').addClass('hide');
+    $('.'+data_href).removeClass('hide').addClass('show');
   });
 
 
