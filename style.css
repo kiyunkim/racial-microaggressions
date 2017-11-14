@@ -25,6 +25,7 @@ body {
 
 .left-title h1 {
   font-weight: bold;
+  line-height: 2;
 }
 
 .left-title h1 a {
@@ -44,8 +45,13 @@ body {
 
 .right-links li a {
   padding: .5em;
-  color: #b3b3b3;
+  color: #999;
   text-decoration: none;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .right-links li a:hover {
@@ -70,9 +76,7 @@ body {
 .content {
   width: 100%;
   padding: 0 1em;
-  display: table;
-  position: absolute;
-  top: 0;
+  display: none;
   -webkit-transition: left 1s ease;
   -moz-transition: left 1s ease;
   -ms-transition: left 1s ease;
@@ -86,12 +90,8 @@ body {
   }
 }
 
-.content.show {
-  left: 0;
-}
-
-.content.hide {
-  left: 999999px;
+input:checked + .content {
+  display: table;
 }
 
 @-webkit-keyframes show {
