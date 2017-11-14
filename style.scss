@@ -61,6 +61,7 @@ body {
   margin-bottom: 1em;
   @media all and (max-width: 768px) {
     padding: 2em 1em;
+    margin-bottom: 0;
   }
 }
 .left-title,
@@ -72,7 +73,8 @@ body {
 .left-title h1 {
   font-weight: bold;
   line-height: 2;
-  a {
+  label {
+    cursor: pointer;
     text-decoration: none;
     border-bottom: 2px solid $main;
     padding-bottom: 4px;
@@ -83,7 +85,8 @@ body {
   text-align: right;
   li {
     display: inline-block;
-    a {
+    label {
+      cursor: pointer;
       padding: .5em;
       color: $grey;
       text-decoration: none;
@@ -104,20 +107,23 @@ body {
   position: relative;
   width: 100%;
   @include box-sizing();
+  input {
+    display: none;
+    &:checked + .content {
+      display: table;
+    }
+  }
 }
 .content {
   width: 100%;
-  padding: 0 1em;
+  padding: 0 2em;
   display: none;
   @include transition(left 1s ease);
   @media all and (max-width: 768px) {
-    padding: 0 .5em;
+    padding: 0 1em;
   }
 }
 
-input:checked + .content {
-  display: table;
-}
 @include keyframes(show) {
   0% {
 		opacity: 0;
@@ -134,14 +140,20 @@ input:checked + .content {
 .frame {
   opacity: 0;
   position: relative;
-  margin: 1em;
+  margin: 1em 0;
   vertical-align: top;
-  width: calc(50% - 2em);
+  width: calc(50% - 1em);
   display: inline-block;
   @include box-sizing();
+  &:nth-of-type(odd){
+    margin-right: 1em;
+  }
+  &:nth-of-type(even){
+    margin-left: 1em;
+  }
   @media all and (max-width: 768px) {
-    width: calc(100% - 1em);
-    margin: .5em;
+    width: 100%;
+    margin: 0;
   }
 }
 .frame.show {

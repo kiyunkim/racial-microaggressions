@@ -13,7 +13,7 @@
 <body ontouchstart="">
 
 <div class="header">
-  <div class="left-title"><h1><a data-href="photos" href="#">Racial Microaggressions</a></h1>
+  <div class="left-title"><h1><label for="photos">Racial Microaggressions</label></h1>
   </div><div class="right-links">
     <ul>
       <li><label for="photos">Index</label></li>
@@ -92,7 +92,7 @@ $(document).ready(function() {
     $(this).on('load', function() {
       var $frame = $(this).parents('.frame');
       
-      if($frame.is(':nth-child(odd)')) {
+      if($frame.is(':nth-of-type(odd)')) {
         $frame.addClass('show');
         $(this).addClass('show');
       } else {
