@@ -1,20 +1,4 @@
 @import url("../templates/css/reset.css");
-input::-webkit-input-placeholder {
-  color: #fff;
-}
-
-input:-moz-placeholder {
-  color: #fff;
-}
-
-input::-moz-placeholder {
-  color: #fff;
-}
-
-input:-ms-input-placeholder {
-  color: #fff;
-}
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   background: #fafafa;
