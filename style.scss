@@ -58,6 +58,7 @@ body {
 .header {
   width: 100%;
   padding: 2em;
+  @include box-sizing();
   margin-bottom: 1em;
   @media all and (max-width: 768px) {
     padding: 2em 1em;
@@ -118,6 +119,7 @@ body {
   width: 100%;
   padding: 0 2em;
   display: none;
+  @include box-sizing();
   @include transition(left 1s ease);
   @media all and (max-width: 768px) {
     padding: 0 1em;
