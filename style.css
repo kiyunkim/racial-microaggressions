@@ -157,6 +157,10 @@ body {
   }
 }
 
+img {
+  max-width: 100%;
+}
+
 .frame {
   opacity: 0;
   position: relative;
@@ -184,6 +188,10 @@ body {
   }
 }
 
+.frame img {
+  width: 100%;
+}
+
 .frame.show {
   opacity: 1;
   top: 0;
@@ -196,6 +204,4 @@ body {
 .caption {
   font-style: italic;
 }
- 
-
- /*# sourceMappingURL= style.css.map */
+/*# sourceMappingURL=style.css.map */
