@@ -1,5 +1,5 @@
-const htmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
  module.exports = {
    devtool: 'cheap-module-eval-source-map',
@@ -9,7 +9,7 @@ const path = require('path');
    },
    output: {
      path: path.join(__dirname, 'dist'),
-     filename: 'bundle.js'
+     filename: '[name].bundle.js'
    },
    module: {
      rules: [
@@ -33,7 +33,9 @@ const path = require('path');
    },
    devServer: {
      contentBase: path.join(__dirname, 'dist'),
-     inline: true // dont run my app inside the webpack iframe
+     inline: true, // dont run my app inside the webpack iframe
+     stats: 'errors-only',
+     port: 8000
    },
    plugins: [
      new htmlWebpackPlugin({
