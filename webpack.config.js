@@ -1,5 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'dev';
 console.log(process.env.NODE_ENV);
@@ -28,9 +29,13 @@ const baseConfig = {
          }
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         include: /src/,
-        use: ['style-loader/url', 'file-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ]
       }
     ]
   },
@@ -47,8 +52,14 @@ const baseConfig = {
       template: path.join(__dirname, 'src', 'index.html'),
       hash: true,
       chunks: ['app'] // name of the bundle, determined by the key in line 6. add only this bundle
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.js','.scss']
+  }
 }
 
 if (isDev) {
