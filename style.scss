@@ -1,7 +1,6 @@
-@import url('../templates/css/reset.css'); // check the path on this
-
-
 $accent: #bc0000; // ff6d85
+$main: #333;
+$grey: #999;
 $font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
 @mixin border-radius($radius) {
@@ -21,34 +20,158 @@ $font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubunt
   -o-transition: $var;
   transition: $var;
 }
+@mixin transform($var) {
+  -webkit-transform: $var;
+  -moz-transform: $var;
+  -ms-transform: $var;
+  -o-transform: $var;
+  transform: $var;
+}
 
+// below from
+// joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/
+@mixin animation($animations) {
+  -webkit-animation: $animations;
+  -moz-animation:    $animations;
+  -o-animation:      $animations;
+  animation:         $animations;
+}
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
 body {
+  //margin: 0;
   font-family: $font;
   background: #fafafa;
   line-height: 1.5;
 }
-
+.header {
+  @include box-sizing();
+  width: 100%;
+  padding: 2em;
+  @include box-sizing();
+  margin-bottom: 1em;
+  @media all and (max-width: 768px) {
+    padding: 2em 1em;
+    margin-bottom: 0;
+  }
+}
+.left-title,
+.right-links {
+  vertical-align: top;
+  display: inline-block;
+  width: 50%;
+}
+.left-title h1 {
+  font-weight: bold;
+  line-height: 2;
+  label {
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 2px solid $main;
+    padding-bottom: 4px;
+    color: $main;
+  }
+}
+.right-links {
+  text-align: right;
+  li {
+    display: inline-block;
+    label {
+      cursor: pointer;
+      padding: .5em;
+      color: $grey;
+      text-decoration: none;
+      @include transition(all .3s ease);
+      &:hover {
+        color: $main;
+      }
+    }
+  }
+}
 .wrapper {
-  max-width: 768px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
 .container {
   display: table;
-  padding: 1em;
-  margin: 1em 0;
+  position: relative;
   width: 100%;
+  @include box-sizing();
+  input {
+    display: none;
+    &:checked + .content {
+      display: table;
+    }
+  }
+}
+.content {
+  width: 100%;
+  padding: 0 2em;
+  @include box-sizing();
+  display: none;
+  @include box-sizing();
+  @include transition(left 1s ease);
   @media all and (max-width: 768px) {
-    margin: 0;
+    padding: 0 1em;
   }
 }
 
-.content {
-  width: 100%;
+@include keyframes(show) {
+  0% {
+		opacity: 0;
+    top: 50px;
+  }
+  50% {
+    opacity: .7;
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+  }
 }
-
-
-img[data-src] {
+img {
+  max-width: 100%;
+}
+.frame {
   opacity: 0;
-  @include transition(opacity 1s ease);
+  position: relative;
+  margin: 1em 0;
+  vertical-align: top;
+  width: calc(50% - 1em);
+  display: inline-block;
+  @include box-sizing();
+  &:nth-of-type(odd){
+    margin-right: 1em;
+  }
+  &:nth-of-type(even){
+    margin-left: 1em;
+  }
+  @media all and (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+  }
+  img {
+    width:100%; 
+  }
+}
+.frame.show {
+  opacity: 1;
+  top: 0;
+  @include animation(show .8s ease-out);
+}
+.caption {
+  font-style: italic;
 }
