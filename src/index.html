@@ -2,18 +2,17 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Racial Microaggressions</title>
+  <title><%= htmlWebpackPlugin.options.title %></title>
   <meta name="author" content="Kiyun Kim">
   <meta name="description" content="Photo series on racial microaggressions by Kiyun Kim" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="https://kiyunkim.github.io/css/normalize.min.css" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body ontouchstart="">
 
 <div class="header">
-  <div class="left-title"><h1><label for="photos">Racial Microaggressions</label></h1>
+  <div class="left-title"><h1><label for="photos"><%= htmlWebpackPlugin.options.header %></label></h1>
   </div><div class="right-links">
     <ul>
       <li><label for="photos">Index</label></li>
@@ -30,7 +29,7 @@
       <div class="frame">
         <img alt="" src="images/amber.jpg" data-src="images/amber.jpg">
         <p class="caption">"Why do you sound white?"</p>
-      </div>
+      </div><!--
       <div class="frame"><img alt="" src="images/amanda.jpg" data-src="images/amanda.jpg"></div>
       <div class="frame"><img alt="" src="images/aj.jpg" data-src="images/aj.jpg"></div>
       <div class="frame"><img alt="" src="images/aja.jpg" data-src="images/aja.jpg"></div>
@@ -49,7 +48,7 @@
       <div class="frame"><img alt="" src="images/sandra.jpg" data-src="images/sandra.jpg"></div>
       <div class="frame"><img alt="" src="images/sri.jpg" data-src="images/sri.jpg"></div>
       <div class="frame"><img alt="" src="images/winter.jpg" data-src="images/winter.jpg"></div>
-
+-->
     </div>
     
     <input type="radio" name="content" id="info">
@@ -80,9 +79,12 @@
 </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--
+<script src="../scripts/jquery-3.2.1.min.js"></script>  
 <script src="../scripts/unveil-master/jquery.unveil.js"></script>
-
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="https://kiyunkim.github.io/scripts/unveil-master/jquery.unveil.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
   $('img').unveil(90, function() {
