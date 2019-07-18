@@ -1,71 +1,159 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const isDev = process.env.NODE_ENV === 'dev';
-console.log(process.env.NODE_ENV);
+module.exports = function (env) {
+  const isDev = env.dev;
+  const isProd = env.prod;
 
-const baseConfig = {
-  devtool: 'cheap-module-eval-source-map',
-  context: path.join(__dirname, 'src'),
-  entry: {
-    app: path.join(__dirname, 'src', 'app.js')
-  },
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: '[name].bundle.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include: /src/,
-         use: {
-           loader: 'babel-loader',
-           options: {
-             presets: ['@babel/preset-env'],
-             plugins: ['@babel/plugin-transform-runtime']
-           }
-         }
+  const baseConfig = {
+    context: path.resolve(__dirname, 'src'),
+    entry: {
+      app: './js/main.js',
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'js/[name].bundle.js', // [name] grabbed from the entry key
+    },
+    module:  {
+      rules: [
+        {
+          test: /\.scss$/,
+          include: /src/,
+          exclude: /node_modules/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function() {
+                  return [
+                    require('autoprefixer')
+                  ]
+                }
+              }
+            },
+            'sass-loader',
+          ]
+        },
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader'
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new webpack.DefinePlugin({ 
+        ENV_DEV: JSON.stringify(isDev ? true : false),
+      }),
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, 'src/index.html'),
+        hash: true,
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].css'
+      })
+    ]
+  }
+
+  // dev environment
+  if (isDev) {
+    return merge(baseConfig, {
+      mode: 'development',
+      devtool: 'cheap-module-eval-source-map',
+      devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        watchContentBase: true,
+        stats: 'errors-only',
+        port: 8000,
       },
-      {
-        test: /\.scss$/,
-        include: /src/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
+      plugins: [
+        new CopyWebpackPlugin([
+          {from: 'images', to: 'images'}
+        ]),
+      ],
+      module: {
+        rules: [
+          {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  outputPath: 'images',
+                  name: '[name].[hash].[ext]'
+                }
+              },
+              {
+                loader: 'image-webpack-loader',
+              }
+            ]
+          },
         ]
       }
-    ]
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    inline: true, // dont run my app inside the webpack iframe
-    stats: 'errors-only',
-    port: 8000
-  },
-  plugins: [
-    new htmlWebpackPlugin({
-      title: 'title',
-      header: 'header',
-      template: path.join(__dirname, 'src', 'index.html'),
-      hash: true,
-      chunks: ['app'] // name of the bundle, determined by the key in line 6. add only this bundle
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css'
     })
-  ],
-  resolve: {
-    extensions: ['.js','.scss']
+  }
+
+  if (isProd) {
+    return merge(baseConfig, {
+      mode: 'production',
+      output: {
+        path: path.resolve(__dirname, 'docs')
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            include: /src/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  ['@babel/preset-env', {
+                    debug: true,
+                    targets: {
+                      browsers: ['defaults']
+                    }
+                  }]
+                ],
+                plugins: ['@babel/plugin-transform-runtime']
+              }
+            }
+          },
+          {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  outputPath: 'images',
+                  name: '[name].[ext]'
+                }
+              },
+              {
+                loader: 'image-webpack-loader',
+              }
+            ]
+          },
+        ]
+      },
+      optimization: {
+        minimizer: [
+          new OptimizeCSSAssetsPlugin(),
+          new UglifyJsPlugin(),
+        ]
+      },
+    })
   }
 }
-
-if (isDev) {
-  baseConfig.plugins.push(
-    // new plugin
-  )
-}
-
-module.exports = baseConfig;

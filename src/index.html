@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><%= htmlWebpackPlugin.options.title %></title>
+  <title>Racial Microaggressions | Kiyun Kim</title>
   <meta name="author" content="Kiyun Kim">
   <meta name="description" content="Photo series on racial microaggressions by Kiyun Kim" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="https://kiyunkim.github.io/css/normalize.min.css" />
 </head>
 
 <body ontouchstart="">
 
 <div class="header">
-  <div class="left-title"><h1><label for="photos"><%= htmlWebpackPlugin.options.header %></label></h1>
+  <div class="left-title"><h1><label for="photos">Racial Microaggressions</label></h1>
   </div><div class="right-links">
     <ul>
       <li><label for="photos">Index</label></li>
@@ -78,46 +77,6 @@
     </div>
 </div>
 </div>
-
-<!--
-<script src="../scripts/jquery-3.2.1.min.js"></script>  
-<script src="../scripts/unveil-master/jquery.unveil.js"></script>
--->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-<script src="https://kiyunkim.github.io/scripts/unveil-master/jquery.unveil.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-  $('img').unveil(90, function() {
-    $(this).on('load', function() {
-      var $frame = $(this).parents('.frame');
-      
-      if($frame.is(':nth-of-type(odd)')) {
-        $frame.addClass('show');
-        $(this).addClass('show');
-      } else {
-        $(this).delay(200).queue(function(){
-          $frame.addClass('show').dequeue();
-          $(this).addClass('show').dequeue();
-        });
-      }
-    });
-  });
-
-
-	//back to top
-	$(window).scroll(function() {
-		if ($(this).scrollTop() > 200) {
-			$('#backtotop').fadeIn();
-		} else {
-			$('#backtotop').fadeOut();
-		}
-	});
-	$('#backtotop').on('click keypress', function() {
-		$("html, body").animate({scrollTop: 0}, 500);
-		return false;
-	});
-});
-</script>
 
 </body>
 </html>
