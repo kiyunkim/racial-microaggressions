@@ -52,17 +52,23 @@ html {
   input { // hide the checkboxes
     display: none;
     &:checked + .content {
-      display: block;
+      display: flex;
     }
   }
 }
 .content {
   display: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 // photos
 .frame {
-  margin: 0;
+  margin: 0.5rem 0;
+  width: 100%;
+  @media all and (min-width: 768px) {
+    width: calc(50% - 0.5rem);
+  }
 }
 .photo {
   width: 100%;

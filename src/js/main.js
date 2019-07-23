@@ -8,7 +8,7 @@ import LazyLoad from 'vanilla-lazyload';
     console.log(
       eventName,
       element.getAttribute("data-src"),
-      element.classList
+      // element.classList
     );
   }
   var callback_enter = function(element) {
@@ -33,8 +33,7 @@ import LazyLoad from 'vanilla-lazyload';
   };
   var ll = new LazyLoad({
     elements_selector: ".photo img",
-    load_delay: 200,
-    threshold: 200,
+    threshold: 0,
     // Assign the callbacks defined above
     callback_enter: callback_enter,
     callback_exit: callback_exit,
