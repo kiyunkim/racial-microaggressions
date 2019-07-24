@@ -109,7 +109,7 @@ module.exports = function (env) {
     return merge(baseConfig, {
       mode: 'production',
       output: {
-        publicPath: 'dist/'
+        path: path.resolve(__dirname, 'docs'),
       },
       module: {
         rules: [
