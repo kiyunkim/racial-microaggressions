@@ -33,7 +33,7 @@ import LazyLoad from 'vanilla-lazyload';
   };
   var ll = new LazyLoad({
     elements_selector: ".photo img",
-    threshold: 0,
+    threshold: 200,
     // Assign the callbacks defined above
     callback_enter: callback_enter,
     callback_exit: callback_exit,
