@@ -109,7 +109,7 @@ module.exports = function (env) {
     return merge(baseConfig, {
       mode: 'production',
       output: {
-        path: path.resolve(__dirname, 'docs')
+        publicPath: 'dist/'
       },
       module: {
         rules: [
@@ -131,27 +131,18 @@ module.exports = function (env) {
               }
             }
           },
-          {
-            test: /\.(jpe?g|png|gif|svg)$/i,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  outputPath: 'images',
-                  name: '[name].[ext]'
-                }
-              },
-              {
-                loader: 'image-webpack-loader',
-              }
-            ]
-          },
         ]
       },
       optimization: {
         minimizer: [
           new OptimizeCSSAssetsPlugin(),
           new UglifyJsPlugin(),
+          new CopyWebpackPlugin([
+            {
+              from: 'images/',
+              to: 'images/',
+            },
+          ]),
         ]
       },
     })
