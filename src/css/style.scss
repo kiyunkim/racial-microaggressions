@@ -67,14 +67,12 @@ html {
   input { // hide the checkboxes
     display: none;
     &:checked + .content {
-      display: flex;
+      display: block;
     }
   }
 }
 .content {
   display: none;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 // about
@@ -90,11 +88,13 @@ html {
 
 // photos
 .frame {
-  margin: 0.3rem 0;
+  margin: 0;
   width: 100%;
+  transition: width 500ms;
   @media all and (min-width: 768px) {
-    margin: 0.5rem 0;
-    width: calc(50% - 0.5rem);
+    float: left;
+    margin: 1rem 0;
+    width: 48%;
   }
 }
 .photo {

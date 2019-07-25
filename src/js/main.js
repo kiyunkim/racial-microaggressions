@@ -2,6 +2,8 @@ import 'normalize.css';
 import '../css/style.scss';
 
 import LazyLoad from 'vanilla-lazyload';
+import imagesLoaded from 'imagesloaded';
+import Masonry from 'masonry-layout';
 
 (function() {
   function logElementEvent(eventName, element) {
@@ -43,3 +45,33 @@ import LazyLoad from 'vanilla-lazyload';
     callback_finish: callback_finish
   });
 })();
+
+const container = document.querySelector('.content.photos');
+const links = document.querySelectorAll('label');
+
+const masonry = new Masonry(container, {
+  columnWidth: '.frame',
+  percentPosition: true,
+  horizontalOrder: true,
+});
+
+
+imagesLoaded(container).on('progress', function() {
+  masonry.layout();
+});
+
+window.addEventListener('resize', function() {
+  reloadMasonry();
+});
+
+function reloadMasonry() {
+  setTimeout(function(){
+    masonry.layout();
+  }, 600);
+}
+
+for (let i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', function() {
+    reloadMasonry();
+  })
+}
